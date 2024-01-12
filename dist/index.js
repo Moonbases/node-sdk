@@ -113,7 +113,7 @@ class MoonbaseClient {
                     endpoints_1.default.ACCOUNT_ENDPOINTS.DELETE_PIN.path,
                 ];
                 const type = publicPaths.includes(path) ? "public" : "private";
-                const response = yield this.client.request({
+                return yield this.client.request({
                     headers: {
                         Authorization: type === "public" ? this.api_key.public_api_key : this.api_key.private_api_key,
                     },
@@ -121,7 +121,6 @@ class MoonbaseClient {
                     url: path,
                     data,
                 });
-                return response;
             }
             catch (error) {
                 throw new Error(`Failed to ${method} ${path}: ${error}`);

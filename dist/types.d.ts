@@ -1,3 +1,31 @@
+type Account = {
+    userNew: (data: UserNew) => Promise<UserNewResponse>;
+    user: (data: User) => Promise<UserResponse>;
+    userPin: (data: UserPin) => Promise<UserPinResponse>;
+    userResetPassword: (data: UserResetPassword) => Promise<UserResetPasswordResponse>;
+    activateLicense: (data: ActivateLicense) => Promise<ActivateLicenseResponse>;
+    createPin: (data: CreatePin) => Promise<CreatePinResponse>;
+    deletePin: (data: DeletePin) => Promise<DeletePinResponse>;
+}
+
+type Admin = {
+    createProduct: (data: CreateProduct) => Promise<CreateProductResponse>;
+    deleteProduct: (data: DeleteProduct) => Promise<DeleteProductResponse>;
+    editProduct: (data: EditProduct) => Promise<EditProductResponse>;
+    createLicense: (data: CreateLicense) => Promise<CreateLicenseResponse>;
+    deleteLicense: (data: DeleteLicense) => Promise<DeleteLicenseResponse>;
+    getLicenseList: () => Promise<GetLicenseListResponse[]>;
+    getLicenseInformation: (data: GetLicenseInformation) => Promise<GetLicenseInformationResponse>;
+    resetLicenseHWID: (data: ResetUserHWID) => Promise<ResetUserHWIDResponse>
+    resetLicenseIp: (data: ResetUserIP) => Promise<ResetUserIPResponse>
+    getUserInformation: (data: GetUserInformation) => Promise<GetUserInformationResponse>
+    banUser: (data: BanUser) => Promise<BanUserResponse>
+    deleteUser: (data: DeleteUser) => Promise<DeleteUserResponse>
+    addBlacklist: (data: AddBlacklist) => Promise<AddBlacklistResponse>
+    removeBlacklist: (data: RemoveBlacklist) => Promise<RemoveBlacklistResponse>
+    createFileLink: (data: CreateFileLink) => Promise<CreateFileLinkResponse>
+}
+
 interface APIResponse {
     status_message: string;
     status_overview: string;

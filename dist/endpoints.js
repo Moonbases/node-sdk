@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Endpoints {
 }
+exports.default = Endpoints;
 Endpoints.ACCOUNT_ENDPOINTS = {
     USER_NEW: { method: "post", path: "/api/auth/user/new" },
     USER: { method: "post", path: "/api/auth/user" },
@@ -29,4 +30,3 @@ Endpoints.ADMIN_ENDPOINTS = {
     UPLOAD_FILE: { method: "post", path: "/api/admin/file/upload" },
     CREATE_FILE_LINK: { method: "post", path: "/api/admin/file/create-link" },
 };
-exports.default = Endpoints;
