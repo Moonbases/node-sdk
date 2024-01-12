@@ -52,7 +52,7 @@ class MoonbaseClient {
 
       const type: "public" | "private" = publicPaths.includes(path) ? "public" : "private";
 
-      const response = await this.client.request<T>({
+      return await this.client.request<T>({
         headers: {
           Authorization: type === "public" ? this.api_key.public_api_key : this.api_key.private_api_key,
         },
@@ -60,7 +60,6 @@ class MoonbaseClient {
         url: path,
         data,
       });
-      return response;
     } catch (error) {
       throw new Error(`Failed to ${method} ${path}: ${error}`);
     }
@@ -70,15 +69,7 @@ class MoonbaseClient {
     return await this.makeRequest<APIResponse>("get", "/api/health");
   }
 
-  account: {
-    userNew: (data: UserNew) => Promise<UserNewResponse>;
-    user: (data: User) => Promise<UserResponse>;
-    userPin: (data: UserPin) => Promise<UserPinResponse>;
-    userResetPassword: (data: UserResetPassword) => Promise<UserResetPasswordResponse>;
-    activateLicense: (data: ActivateLicense) => Promise<ActivateLicenseResponse>;
-    createPin: (data: CreatePin) => Promise<CreatePinResponse>;
-    deletePin: (data: DeletePin) => Promise<DeletePinResponse>;
-  } = {
+  account: Account = {
     userNew: async (data: UserNew): Promise<UserNewResponse> => {
       return await this.makeRequest<UserNewResponse>(
           endpoints.ACCOUNT_ENDPOINTS.USER_NEW.method,
@@ -130,23 +121,7 @@ class MoonbaseClient {
     },
   };
 
-  admin: {
-    createProduct: (data: CreateProduct) => Promise<CreateProductResponse>;
-    deleteProduct: (data: DeleteProduct) => Promise<DeleteProductResponse>;
-    editProduct: (data: EditProduct) => Promise<EditProductResponse>;
-    createLicense: (data: CreateLicense) => Promise<CreateLicenseResponse>;
-    deleteLicense: (data: DeleteLicense) => Promise<DeleteLicenseResponse>;
-    getLicenseList: () => Promise<GetLicenseListResponse[]>;
-    getLicenseInformation: (data: GetLicenseInformation) => Promise<GetLicenseInformationResponse>;
-    resetLicenseHWID: (data: ResetUserHWID) => Promise<ResetUserHWIDResponse>
-    resetLicenseIp: (data: ResetUserIP) => Promise<ResetUserIPResponse>
-    getUserInformation: (data: GetUserInformation) => Promise<GetUserInformationResponse>
-    banUser: (data: BanUser) => Promise<BanUserResponse>
-    deleteUser: (data: DeleteUser) => Promise<DeleteUserResponse>
-    addBlacklist: (data: AddBlacklist) => Promise<AddBlacklistResponse>
-    removeBlacklist: (data: RemoveBlacklist) => Promise<RemoveBlacklistResponse>
-    createFileLink: (data: CreateFileLink) => Promise<CreateFileLinkResponse>
-  } = {
+  admin: Admin = {
     createProduct: async (data: CreateProduct): Promise<CreateProductResponse> => {
       return await this.makeRequest<CreateProductResponse>(
         endpoints.ADMIN_ENDPOINTS.CREATE_PRODUCT.method,
