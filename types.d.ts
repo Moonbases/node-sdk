@@ -1,3 +1,16 @@
+type HttpMethod = "post" | "get" | "put" | "delete" | "patch";
+
+type APIKeys = {
+  public_api_key: string;
+  private_api_key?: string;
+}
+
+type RequestOptions = {
+  method: HttpMethod;
+  path: string;
+  data?: Record<string, any>;
+}
+
 type Account = {
     userNew: (data: UserNew) => Promise<UserNewResponse>;
     user: (data: User) => Promise<UserResponse>;
@@ -26,7 +39,7 @@ type Admin = {
     createFileLink: (data: CreateFileLink) => Promise<CreateFileLinkResponse>
 }
 
-interface APIResponse {
+type APIResponse = {
     status_message: string;
     status_overview: string;
     status_code: number;
