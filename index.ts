@@ -44,7 +44,7 @@ class MoonbaseClient {
   }
 
   async health(): Promise<APIResponse> {
-    return await this.makeRequest<APIResponse>({ method: "get", path: "/api/health" });
+    return await this.makeRequest<APIResponse>({ method: endpoints.HEALTH_ENDPOINT.method, path: endpoints.HEALTH_ENDPOINT.path });
   }
 
   account: Account = {
@@ -118,6 +118,19 @@ class MoonbaseClient {
       return await this.makeRequest<EditProductResponse>({
         method: endpoints.ADMIN_ENDPOINTS.EDIT_PRODUCT.method,
         path: endpoints.ADMIN_ENDPOINTS.EDIT_PRODUCT.path,
+        data
+      });
+    },
+    getProductList: async (): Promise<GetProductListResponse[]> => {
+      return await this.makeRequest<GetProductListResponse[]>({
+        method: endpoints.ADMIN_ENDPOINTS.GET_PRODUCT_LIST.method,
+        path: endpoints.ADMIN_ENDPOINTS.GET_PRODUCT_LIST.path
+      });
+    },
+    getProductInformation: async (data: GetProductInformation): Promise<GetProductInformationResponse> => {
+      return await this.makeRequest<GetProductInformationResponse>({
+        method: endpoints.ADMIN_ENDPOINTS.GET_PRODUCT_INFORMATION.method,
+        path: endpoints.ADMIN_ENDPOINTS.GET_PRODUCT_INFORMATION.path,
         data
       });
     },

@@ -1,4 +1,8 @@
 export default class Endpoints {
+  static HEALTH_ENDPOINT = {
+    method: "get", path: "/api/health"
+  } as const;
+
   static ACCOUNT_ENDPOINTS = {
     USER_NEW: { method: "post", path: "/api/auth/user/new" },
     USER: { method: "post", path: "/api/auth/user" },
@@ -13,6 +17,8 @@ export default class Endpoints {
     CREATE_PRODUCT: { method: "post", path: "/api/admin/product/create" },
     DELETE_PRODUCT: { method: "delete", path: "/api/admin/product/delete" },
     EDIT_PRODUCT: { method: "put", path: "/api/admin/product/edit" },
+    GET_PRODUCT_LIST: { method: "get", path: "/api/admin/product/list" },
+    GET_PRODUCT_INFORMATION: { method: "get", path: "/api/admin/product/information" },
     CREATE_LICENSE: { method: "post", path: "/api/admin/license/create" },
     DELETE_LICENSE: { method: "delete", path: "/api/admin/license/delete" },
     GET_LICENSE_LIST: { method: "get", path: "/api/admin/license/list" },

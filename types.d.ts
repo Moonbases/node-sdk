@@ -1,14 +1,14 @@
 type HttpMethod = "post" | "get" | "put" | "delete" | "patch";
 
 type APIKeys = {
-  public_api_key: string;
-  private_api_key?: string;
+    public_api_key: string;
+    private_api_key?: string;
 }
 
 type RequestOptions = {
-  method: HttpMethod;
-  path: string;
-  data?: Record<string, any>;
+    method: HttpMethod;
+    path: string;
+    data?: Record<string, any>;
 }
 
 type Account = {
@@ -25,6 +25,8 @@ type Admin = {
     createProduct: (data: CreateProduct) => Promise<CreateProductResponse>;
     deleteProduct: (data: DeleteProduct) => Promise<DeleteProductResponse>;
     editProduct: (data: EditProduct) => Promise<EditProductResponse>;
+    getProductList: () => Promise<GetProductListResponse[]>;
+    getProductInformation: (data: GetProductInformation) => Promise<GetProductInformationResponse>;
     createLicense: (data: CreateLicense) => Promise<CreateLicenseResponse>;
     deleteLicense: (data: DeleteLicense) => Promise<DeleteLicenseResponse>;
     getLicenseList: () => Promise<GetLicenseListResponse[]>;
@@ -57,7 +59,7 @@ type UserNew = {
     ip?: string;
 
 }
-interface UserNewResponse extends APIResponse {}
+interface UserNewResponse extends APIResponse { }
 
 type User = {
     username: string;
@@ -75,33 +77,33 @@ type UserPin = {
     email: string;
     pin: number;
 }
-interface UserPinResponse extends APIResponse {}
+interface UserPinResponse extends APIResponse { }
 
 type UserResetPassword = {
     email: string;
     old_password: string;
     new_password: string;
 }
-interface UserResetPasswordResponse extends APIResponse {}
+interface UserResetPasswordResponse extends APIResponse { }
 
 type ActivateLicense = {
     email: string
     license: string;
 }
-interface ActivateLicenseResponse extends APIResponse {}
+interface ActivateLicenseResponse extends APIResponse { }
 
 type CreatePin = {
     email: string;
     password: string;
     pin: number;
 }
-interface CreatePinResponse extends APIResponse {}
+interface CreatePinResponse extends APIResponse { }
 
 type DeletePin = {
     email: string;
     password: string;
 }
-interface DeletePinResponse extends APIResponse {}
+interface DeletePinResponse extends APIResponse { }
 
 /**
  * @ADMIN
@@ -112,12 +114,12 @@ type CreateProduct = {
     version: string;
     price: number;
 }
-interface CreateProductResponse extends APIResponse {}
+interface CreateProductResponse extends APIResponse { }
 
 type DeleteProduct = {
     name: string;
 }
-interface DeleteProductResponse extends APIResponse {}
+interface DeleteProductResponse extends APIResponse { }
 
 type EditProduct = {
     name: string;
@@ -125,7 +127,29 @@ type EditProduct = {
     new_version: string;
     new_price: number;
 }
-interface EditProductResponse extends APIResponse {}
+interface EditProductResponse extends APIResponse { }
+
+interface GetProductListResponse extends APIResponse {
+    status_data: {
+        name: string;
+        version: string;
+        price: number;
+        total_purchases: number;
+    }
+}
+
+type GetProductInformation = {
+    name: string;
+}
+
+interface GetProductInformationResponse extends APIResponse {
+    status_data: {
+        name: string;
+        version: string;
+        price: number;
+        total_purchases: number;
+    }
+}
 
 type Expiration = "daily" | "weekly" | "monthly" | "yearly" | "lifetime";
 
@@ -143,7 +167,7 @@ interface CreateLicenseResponse extends APIResponse {
 type DeleteLicense = {
     license: string;
 }
-interface DeleteLicenseResponse extends APIResponse {}
+interface DeleteLicenseResponse extends APIResponse { }
 
 interface GetLicenseListResponse extends APIResponse {
     status_data: {
@@ -169,12 +193,12 @@ interface GetLicenseInformationResponse extends APIResponse {
 type ResetUserHWID = {
     username: string
 }
-interface ResetUserHWIDResponse extends APIResponse {}
+interface ResetUserHWIDResponse extends APIResponse { }
 
 type ResetUserIP = {
     username: string
 }
-interface ResetUserIPResponse extends APIResponse {}
+interface ResetUserIPResponse extends APIResponse { }
 
 type GetUserInformation = {
     username: string;
@@ -198,12 +222,12 @@ interface GetUserInformationResponse extends APIResponse {
 type BanUser = {
     username: string
 }
-interface BanUserResponse extends APIResponse {}
+interface BanUserResponse extends APIResponse { }
 
 type DeleteUser = {
     username: string
 }
-interface DeleteUserResponse extends APIResponse {}
+interface DeleteUserResponse extends APIResponse { }
 
 type BlacklistType = "ip" | "hwid";
 
@@ -211,13 +235,13 @@ type AddBlacklist = {
     type: BlacklistType;
     value: string;
 }
-interface AddBlacklistResponse extends APIResponse {}
+interface AddBlacklistResponse extends APIResponse { }
 
 type RemoveBlacklist = {
     type: BlacklistType;
     value: string;
 }
-interface RemoveBlacklistResponse extends APIResponse {}
+interface RemoveBlacklistResponse extends APIResponse { }
 
 type CreateFileLink = {
     file: string;
