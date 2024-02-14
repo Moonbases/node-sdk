@@ -139,7 +139,7 @@ interface GetProductListResponse extends APIResponse {
 }
 
 type GetProductInformation = {
-    name: string;
+    id: string;
 }
 
 interface GetProductInformationResponse extends APIResponse {
