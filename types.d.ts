@@ -123,9 +123,9 @@ interface DeleteProductResponse extends APIResponse { }
 
 type EditProduct = {
     name: string;
-    new_name: string;
-    new_version: string;
-    new_price: number;
+    new_name?: string;
+    new_version?: string;
+    new_price?: number;
 }
 interface EditProductResponse extends APIResponse { }
 
