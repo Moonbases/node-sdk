@@ -175,6 +175,12 @@ class MoonbaseClient {
         data
       });
     },
+    getUserList: async (): Promise<GetUserListResponse[]> => {
+      return await this.makeRequest<GetUserListResponse[]>({
+        method: endpoints.ADMIN_ENDPOINTS.GET_USER_LIST.method,
+        path: endpoints.ADMIN_ENDPOINTS.GET_USER_LIST.path
+      });
+    },
     getUserInformation: async (data: GetUserInformation): Promise<GetUserInformationResponse> => {
       return await this.makeRequest<GetUserInformationResponse>({
         method: endpoints.ADMIN_ENDPOINTS.GET_USER_INFORMATION.method,

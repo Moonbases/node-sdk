@@ -142,6 +142,12 @@ class MoonbaseClient {
                     data
                 });
             }),
+            getUserList: () => __awaiter(this, void 0, void 0, function* () {
+                return yield this.makeRequest({
+                    method: endpoints_1.default.ADMIN_ENDPOINTS.GET_USER_LIST.method,
+                    path: endpoints_1.default.ADMIN_ENDPOINTS.GET_USER_LIST.path
+                });
+            }),
             getUserInformation: (data) => __awaiter(this, void 0, void 0, function* () {
                 return yield this.makeRequest({
                     method: endpoints_1.default.ADMIN_ENDPOINTS.GET_USER_INFORMATION.method,

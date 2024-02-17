@@ -33,6 +33,7 @@ type Admin = {
     getLicenseInformation: (data: GetLicenseInformation) => Promise<GetLicenseInformationResponse>;
     resetLicenseHWID: (data: ResetUserHWID) => Promise<ResetUserHWIDResponse>
     resetLicenseIp: (data: ResetUserIP) => Promise<ResetUserIPResponse>
+    getUserList: () => Promise<GetUserListResponse[]>;
     getUserInformation: (data: GetUserInformation) => Promise<GetUserInformationResponse>
     banUser: (data: BanUser) => Promise<BanUserResponse>
     deleteUser: (data: DeleteUser) => Promise<DeleteUserResponse>
@@ -200,22 +201,41 @@ type ResetUserIP = {
 }
 interface ResetUserIPResponse extends APIResponse { }
 
+interface GetUserListResponse extends APIResponse {
+    status_data: {
+        flags: 0 | 1;
+        email: string;
+        username: string;
+        password: string;
+        pin?: number;
+        products?: {
+            name: string;
+            expiration_date: string;
+        },
+        hwid?: string;
+        ip?: string;
+        banned?: boolean
+    }
+}
+
 type GetUserInformation = {
     username: string;
 }
 interface GetUserInformationResponse extends APIResponse {
     status_data: {
-        super: boolean;
+        _id: string;
+        flags: 0 | 1;
         email: string;
         username: string;
-        pin: number
-        products: {
+        password: string;
+        pin?: number;
+        products?: {
             name: string;
             expiration_date: string;
         },
-        hwid: string;
-        ip: string;
-        banned: boolean
+        hwid?: string;
+        ip?: string;
+        banned?: boolean;
     }
 }
 
