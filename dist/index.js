@@ -65,6 +65,13 @@ class MoonbaseClient {
                     data
                 });
             }),
+            updatePin: (data) => __awaiter(this, void 0, void 0, function* () {
+                return yield this.makeRequest({
+                    method: endpoints_1.default.ACCOUNT_ENDPOINTS.UPDATE_PIN.method,
+                    path: endpoints_1.default.ACCOUNT_ENDPOINTS.UPDATE_PIN.path,
+                    data
+                });
+            })
         };
         this.admin = {
             createProduct: (data) => __awaiter(this, void 0, void 0, function* () {
@@ -183,6 +190,32 @@ class MoonbaseClient {
                     data
                 });
             },
+            getBlacklist: () => __awaiter(this, void 0, void 0, function* () {
+                return yield this.makeRequest({
+                    method: endpoints_1.default.ADMIN_ENDPOINTS.GET_BLACKLIST_LIST.method,
+                    path: endpoints_1.default.ADMIN_ENDPOINTS.GET_BLACKLIST_LIST.path
+                });
+            }),
+            deleteFile: (data) => __awaiter(this, void 0, void 0, function* () {
+                return yield this.makeRequest({
+                    method: endpoints_1.default.ADMIN_ENDPOINTS.DELETE_FILE.method,
+                    path: endpoints_1.default.ADMIN_ENDPOINTS.DELETE_FILE.path,
+                    data
+                });
+            }),
+            getFileList: () => __awaiter(this, void 0, void 0, function* () {
+                return yield this.makeRequest({
+                    method: endpoints_1.default.ADMIN_ENDPOINTS.GET_FILE_LIST.method,
+                    path: endpoints_1.default.ADMIN_ENDPOINTS.GET_FILE_LIST.path
+                });
+            }),
+            getFileListByProduct: (data) => __awaiter(this, void 0, void 0, function* () {
+                return yield this.makeRequest({
+                    method: endpoints_1.default.ADMIN_ENDPOINTS.GET_FILE_LIST_BY_PRODUCT.method,
+                    path: endpoints_1.default.ADMIN_ENDPOINTS.GET_FILE_LIST_BY_PRODUCT.path,
+                    data
+                });
+            }),
             createFileLink: (data) => {
                 return this.makeRequest({
                     method: endpoints_1.default.ADMIN_ENDPOINTS.CREATE_FILE_LINK.method,

@@ -97,6 +97,13 @@ class MoonbaseClient {
         data
       });
     },
+    updatePin: async (data: UpdatePin): Promise<UpdatePinResponse> => {
+      return await this.makeRequest<UpdatePinResponse>({
+        method: endpoints.ACCOUNT_ENDPOINTS.UPDATE_PIN.method,
+        path: endpoints.ACCOUNT_ENDPOINTS.UPDATE_PIN.path,
+        data
+      });
+    }
   };
 
   admin: Admin = {
@@ -213,6 +220,32 @@ class MoonbaseClient {
       return this.makeRequest<RemoveBlacklistResponse>({
         method: endpoints.ADMIN_ENDPOINTS.REMOVE_BLACKLIST.method,
         path: endpoints.ADMIN_ENDPOINTS.REMOVE_BLACKLIST.path,
+        data
+      });
+    },
+    getBlacklist: async (): Promise<GetBlacklistResponse[]> => {
+      return await this.makeRequest<GetBlacklistResponse[]>({
+        method: endpoints.ADMIN_ENDPOINTS.GET_BLACKLIST_LIST.method,
+        path: endpoints.ADMIN_ENDPOINTS.GET_BLACKLIST_LIST.path
+      });
+    },
+    deleteFile: async (data: DeleteFile): Promise<DeleteFileResponse> => {
+      return await this.makeRequest<DeleteFileResponse>({
+        method: endpoints.ADMIN_ENDPOINTS.DELETE_FILE.method,
+        path: endpoints.ADMIN_ENDPOINTS.DELETE_FILE.path,
+        data
+      });
+    },
+    getFileList: async (): Promise<GetFileListResponse[]> => {
+      return await this.makeRequest<GetFileListResponse[]>({
+        method: endpoints.ADMIN_ENDPOINTS.GET_FILE_LIST.method,
+        path: endpoints.ADMIN_ENDPOINTS.GET_FILE_LIST.path
+      });
+    },
+    getFileListByProduct: async (data: GetFileListByProduct): Promise<GetFileListByProductResponse[]> => {
+      return await this.makeRequest<GetFileListByProductResponse[]>({
+        method: endpoints.ADMIN_ENDPOINTS.GET_FILE_LIST_BY_PRODUCT.method,
+        path: endpoints.ADMIN_ENDPOINTS.GET_FILE_LIST_BY_PRODUCT.path,
         data
       });
     },

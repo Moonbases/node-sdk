@@ -10,6 +10,7 @@ export default class Endpoints {
     USER_RESET_PASSWORD: { method: "post", path: "/api/auth/user/reset-password" },
     ACTIVATE_LICENSE: { method: "post", path: "/api/user/license/activate" },
     CREATE_PIN: { method: "post", path: "/api/user/pin/create" },
+    UPDATE_PIN: { method: "put", path: "/api/user/pin/update" },
     DELETE_PIN: { method: "delete", path: "/api/user/pin/delete" },
   } as const;
 
@@ -31,6 +32,10 @@ export default class Endpoints {
     DELETE_USER: { method: "delete", path: "/api/admin/user/delete" },
     ADD_BLACKLIST: { method: "post", path: "/api/admin/blacklist/add" },
     REMOVE_BLACKLIST: { method: "delete", path: "/api/admin/blacklist/remove" },
+    GET_BLACKLIST_LIST: { method: "get", path: "/api/admin/blacklist/list" },
+    DELETE_FILE: { method: "delete", path: "/api/admin/file/delete" },
+    GET_FILE_LIST: { method: "get", path: "/api/admin/file/list" },
+    GET_FILE_LIST_BY_PRODUCT: { method: "get", path: "/api/admin/file/list-by-product" },
     UPLOAD_FILE: { method: "post", path: "/api/admin/file/upload" },
     CREATE_FILE_LINK: { method: "post", path: "/api/admin/file/create-link" },
   } as const;

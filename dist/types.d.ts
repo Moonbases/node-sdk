@@ -19,6 +19,7 @@ type Account = {
     activateLicense: (data: ActivateLicense) => Promise<ActivateLicenseResponse>;
     createPin: (data: CreatePin) => Promise<CreatePinResponse>;
     deletePin: (data: DeletePin) => Promise<DeletePinResponse>;
+    updatePin: (data: UpdatePin) => Promise<UpdatePinResponse>;
 }
 
 type Admin = {
@@ -39,6 +40,10 @@ type Admin = {
     deleteUser: (data: DeleteUser) => Promise<DeleteUserResponse>
     addBlacklist: (data: AddBlacklist) => Promise<AddBlacklistResponse>
     removeBlacklist: (data: RemoveBlacklist) => Promise<RemoveBlacklistResponse>
+    getBlacklist: () => Promise<GetBlacklistResponse[]>
+    deleteFile: (data: DeleteFile) => Promise<DeleteFileResponse>
+    getFileList: () => Promise<GetFileListResponse[]>
+    getFileListByProduct: (data: GetFileListByProduct) => Promise<GetFileListByProductResponse[]>
     createFileLink: (data: CreateFileLink) => Promise<CreateFileLinkResponse>
 }
 
@@ -105,6 +110,13 @@ type DeletePin = {
     password: string;
 }
 interface DeletePinResponse extends APIResponse { }
+
+type UpdatePin = {
+    email: string;
+    password: string;
+    new_pin: number;
+}
+interface UpdatePinResponse extends APIResponse { }
 
 /**
  * @ADMIN
@@ -262,6 +274,47 @@ type RemoveBlacklist = {
     value: string;
 }
 interface RemoveBlacklistResponse extends APIResponse { }
+
+interface GetBlacklistResponse extends APIResponse {
+    status_data: {
+        type: BlacklistType;
+        value: string;
+    }
+}
+
+type DeleteFile = {
+    file: string;
+}
+interface DeleteFileResponse extends APIResponse { }
+
+interface GetFileListResponse extends APIResponse {
+    status_data: {
+        product: string;
+        name: string;
+        encoding?: string;
+        mimetype?: string;
+        filename?: string;
+        path?: string;
+        size?: number;
+        total_downloads: number;
+    }
+}
+
+type GetFileListByProduct = {
+    product: string;
+}
+interface GetFileListByProductResponse extends APIResponse {
+    status_data: {
+        product: string;
+        name: string;
+        encoding?: string;
+        mimetype?: string;
+        filename?: string;
+        path?: string;
+        size?: number;
+        total_downloads: number;
+    }
+}
 
 type CreateFileLink = {
     file: string;
