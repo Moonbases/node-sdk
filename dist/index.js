@@ -235,7 +235,7 @@ class MoonbaseClient {
             const errorMessage = error.response
                 ? error.response.data
                 : error.message;
-            return console.log(errorMessage);
+            throw Error(errorMessage);
         });
     }
     makeRequest({ method, path, data = {} }) {
