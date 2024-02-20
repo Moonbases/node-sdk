@@ -20,7 +20,7 @@ class MoonbaseClient {
         const errorMessage = error.response
           ? error.response.data
           : error.message;
-        throw Error(errorMessage);
+        return errorMessage;
       }
     );
   }
