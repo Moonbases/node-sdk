@@ -96,7 +96,12 @@ type ActivateLicense = {
     email: string
     license: string;
 }
-interface ActivateLicenseResponse extends APIResponse { }
+interface ActivateLicenseResponse extends APIResponse {
+    status_data: {
+        plan: Expiration,
+        expiration_date: Date,
+    },
+}
 
 type CreatePin = {
     email: string;
